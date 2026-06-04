@@ -1,1 +1,33 @@
-day 1
+// Method one
+class Solution {
+    static void row(int[][] matrix,int r,int c){
+        for(int i=0;i<matrix[0].length;i++){
+            matrix[r][i]=0;
+        }
+
+         for(int i=0;i<matrix.length;i++){
+            matrix[i][c]=0;
+        }
+    }
+    public void setZeroes(int[][] matrix) {
+        int n=matrix.length;
+        int m=matrix[0].length;
+        List<int[]> lt=new ArrayList<>();
+
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(matrix[i][j]==0){
+                    lt.add(new int[]{i,j});
+                }
+            }
+        }
+
+        for(int i=0;i<lt.size();i++){
+            row(matrix,lt.get(i)[0],lt.get(i)[1]);
+        }
+        
+    }
+}
+
+
+
