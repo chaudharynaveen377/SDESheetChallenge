@@ -30,4 +30,46 @@ class Solution {
 }
 
 
+// Method 2 
+
+
+class Solution {
+    static void madeZero(int arr[][],int i,int j){
+        // top and bottum
+        for(int k=0;k<arr.length;k++){
+            if(k!=i && arr[k][j]==0){
+                continue;
+            }
+            arr[k][j]=10000010+1;
+           
+        }
+        for(int k=0;k<arr[0].length;k++){
+             if(k!=j && arr[i][k]==0){
+                continue;
+            }
+            arr[i][k]=10000010+1;
+        }
+    }
+    static void toZero(int arr[][]){
+           for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr[0].length;j++){
+            if(arr[i][j]==10000010+1){
+                arr[i][j]=0;
+            }
+            }
+           }
+    }
+    public void setZeroes(int[][] arr) {
+         for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr[0].length;j++){
+            if(arr[i][j]==0){
+                madeZero(arr,i,j);
+            }
+            }
+           }
+           toZero(arr);
+           
+    }
+}
+
 
