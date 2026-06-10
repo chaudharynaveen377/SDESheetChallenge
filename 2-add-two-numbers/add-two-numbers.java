@@ -9,33 +9,54 @@
  * }
  */
 class Solution {
-    
-    static ListNode solve(ListNode a, ListNode b, int carry){
-        
-        if (a == null && b == null){
-            if (carry != 0) return new ListNode(carry);
-            return null;
-        }
-
-        int vala = (a != null ? a.val : 0);
-        int valb = (b != null ? b.val : 0);
-
-        int sum = vala + valb + carry;
-        int digit = sum % 10;
-        int newCarry = sum / 10;
-
-        ListNode node = new ListNode(digit);
-
-        node.next = solve(
-            (a != null ? a.next : null),
-            (b != null ? b.next : null),
-            newCarry
-        );
-
-        return node;
-    }
-
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return solve(l1, l2, 0);
+        int sum=0;
+        int carry=0;
+        ListNode temp=new ListNode(-1);
+        ListNode ans=temp;
+
+        while(l1!=null && l2!=null){
+            sum=l1.val+l2.val+carry;
+            carry=sum/10;
+            sum=sum%10;
+            ListNode dum=new ListNode(sum);
+            temp.next=dum;
+            temp=temp.next;
+            l1=l1.next;
+            l2=l2.next;
     }
+
+
+
+         while(l2!=null){
+             sum=l2.val+carry;
+            carry=sum/10;
+            sum=sum%10;
+ ListNode dum=new ListNode(sum);
+            temp.next=dum;
+            temp=temp.next;
+            l2=l2.next;
+            
+            
+         }
+
+          while(l1!=null){
+             sum=l1.val+carry;
+            carry=sum/10;
+            sum=sum%10;
+ ListNode dum=new ListNode(sum);
+            temp.next=dum;
+            temp=temp.next;
+            l1=l1.next;
+            
+            
+         }
+
+         if(carry!=0){
+             ListNode dum=new ListNode(carry);
+            temp.next=dum;
+         }
+
+return ans.next;
+ }
 }
